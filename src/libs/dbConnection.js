@@ -5,7 +5,10 @@ var db
 module.exports = function Connection() {
    if(!db){
      try {
-       db= mongoose.connect("mongodb://192.168.101.1:27017/initcrud")
+       db= mongoose.connect("mongodb://localhost:27017/initcrud",
+     {
+       useMongoClient:true
+     })
 
      } catch (e) {
        console.log(e);

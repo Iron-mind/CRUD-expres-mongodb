@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router()
-const model = require('../models/index')()
 
-router.get("/",(req,res)=>{
-  model.find({}, (err,data)=>{
-    if (!err) {
-      res.json(data)
-    }else {
-      res.json("error del bueno")
+
+router.get("/",async (req,res)=>{
+	const model = await require('../models/index')()
+	console.log("model sss",model)
+    model.find({}, (err,data)=>{
+    
+      return res.json(data)
       console.log(err);
-    }
-  })
-  res.send('hi, boomer')
+    
+     })
+  
 })
 
 module.exports = router
