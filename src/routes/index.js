@@ -4,9 +4,10 @@ var thing={} ;
 require('../models/index')().then(t=>{
     thing = t
 })
+//crud baby
 
 router.get("/",(req,res)=>{
-	res.send("<h3>See this routes<h3> /things")
+	res.send("<h3>See this route<h3> /things")
 })
 
 router.get("/things",async (req,res)=>{
@@ -36,5 +37,26 @@ router.post("/things", async (req,res)=>{
    } catch (e) {
        console.log(e);
    }
+})
+
+router.put("/things", (req,res)=>{
+  let {_id}= req.body
+  thing.updateOne({_id:_id},req.body, (err,data)=>{
+    if (data) {
+      return res.json({msg:'successfully'})
+
+    }
+    console.log(err);
+  })
+})
+router.delete("/things/:id", (req,res)=>{
+  let {id}= req.params
+  thing.deleteOne({_id:id},(err,data)=>{
+    if (data) {
+      return res.json({msg:'successfully'})
+
+    }
+    console.log(err);
+  })
 })
 module.exports = router

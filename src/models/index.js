@@ -6,9 +6,10 @@ module.exports =async function () {
     var things = new Schema({
       name:String,
       size:Number,
-      status:Boolean
+      status:Boolean,
+      description:String
     })
-     
+
     let mongoose = require("mongoose")
     return  db.model('things', things)
   } catch (e) {
